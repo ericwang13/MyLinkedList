@@ -12,7 +12,6 @@ public class MyLinkedList {
 
     public boolean add(String value) {
         Node newNode = new Node(value);
-
         if (size == 0) {
             head = newNode;
             tail = head;
@@ -26,6 +25,23 @@ public class MyLinkedList {
     }
 
     public boolean add(int index, String value) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+        } else if (index == size) {
+            return add(value);
+        } else if (index == 0) {
+            Node newNode = new Node(value);
+            link(newNode, head);
+            head = newNode;
+            size++;
+        } else {
+            Node curr = getNode(index);
+            Node currPrev = curr.getPrev();
+            Node newNode = new Node(value);
+            link(currPrev, newNode);
+            link(newNode, head);
+        }
+
         return true;
     }
 
@@ -55,5 +71,20 @@ public class MyLinkedList {
     private void link(Node prev, Node next) {
         prev.setNext(next);
         next.setPrev(prev);
+    }
+
+    private void unlink(Node prev, Node next) {
+        if (prev.getNext() == next && next.getPrev() == prev) {
+            prev.setNext(null);
+            next.setPrev(null);
+        }
+    }
+
+    private Node getNode(int index) {
+        Node curr = head;
+        for (int i = 0; i < index; i++) {
+            curr = curr.getNext();
+        }
+        return curr;
     }
 }
