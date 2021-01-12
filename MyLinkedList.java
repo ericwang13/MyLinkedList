@@ -30,25 +30,26 @@ public class MyLinkedList {
     // Throws exception if index isnt in range
     // Calls add(value) if index is at the tail
     // Replaces head if index is 0
-    public boolean add(int index, String value) {
+    public void add(int index, String value) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
-        } else if (index == size) {
-            return add(value);
+        }
+
+        if (index == size) {
+            add(value);
         } else if (index == 0) {
             Node newNode = new Node(value);
             link(newNode, head);
             head = newNode;
+            size++;
         } else {
             Node curr = getNode(index);
             Node currPrev = curr.getPrev();
             Node newNode = new Node(value);
             link(currPrev, newNode);
-            link(newNode, head);
+            link(newNode, curr);
+            size++;
         }
-
-        size++;
-        return true;
     }
 
     // Removes a ndoe at an index and returns value that got removed
@@ -144,7 +145,7 @@ public class MyLinkedList {
 
     // Returns the linked list in [ 1, 2, 3, 4 ] format
     public String toString() {
-        String result = "[ ";
+        String result = "[";
         Node curr = head;
         for (int i = 0; i < size; i++) {
             result += curr.getData();
@@ -155,12 +156,12 @@ public class MyLinkedList {
             curr = curr.getNext();
         }
 
-        return result + " ]";
+        return result + "]";
     }
 
     // Returns the linked list in [ 4, 3, 2, 1 ] reversed format
     public String toStringReversed() {
-        String result = "[ ";
+        String result = "[";
         Node curr = tail;
         for (int i = 0; i < size; ++i) {
             result += curr.getData();
@@ -171,7 +172,7 @@ public class MyLinkedList {
             curr = curr.getPrev();
         }
 
-        return result + " ]";
+        return result + "]";
     }
 
     // ======================== //
