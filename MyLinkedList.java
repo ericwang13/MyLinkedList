@@ -115,6 +115,14 @@ public class MyLinkedList {
         return result;
     }
 
+    // Clears the list by setting head and tail to null, thus every value that is
+    // connected by next or prev is no longer referenced and gets garbage collected
+    public void clear() {
+        size = 0;
+        head = null;
+        tail = null;
+    }
+
     // Returns the linked list in [ 1, 2, 3, 4 ] format
     public String toString() {
         String result = "[ ";
