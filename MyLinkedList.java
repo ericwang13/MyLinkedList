@@ -158,6 +158,22 @@ public class MyLinkedList {
         return result + " ]";
     }
 
+    // Returns the linked list in [ 4, 3, 2, 1 ] reversed format
+    public String toStringReversed() {
+        String result = "[ ";
+        Node curr = tail;
+        for (int i = 0; i < size; ++i) {
+            result += curr.getData();
+            if (i < size - 1) {
+                result += ", ";
+            }
+
+            curr = curr.getPrev();
+        }
+
+        return result + " ]";
+    }
+
     // ======================== //
     // === HELPER FUNCTIONS === //
     // ========================= //
