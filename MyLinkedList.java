@@ -131,49 +131,6 @@ public class MyLinkedList {
         return result + " ]";
     }
 
-    // Returns the linked list in [ 4, 3, 2, 1 ] reversed format
-    public String toStringReversed() {
-        String result = "[ ";
-        Node curr = tail;
-        for (int i = 0; i < size; ++i) {
-            result += curr.getData();
-            if (i < size - 1) {
-                result += ", ";
-            }
-
-            curr = curr.getPrev();
-        }
-
-        return result + " ]";
-    }
-
-    // Appends another linked list onto this one if the size of the other is > 0
-    // If this list is empty, this list is set to the other
-    // Increases size and clears the other list too
-    public void extend(MyLinkedList other) {
-        if (other.size > 0) {
-            if (size == 0) {
-                head = other.head;
-                tail = other.tail;
-            } else {
-                link(tail, other.head);
-                if (other.tail != null)
-                    tail = other.tail;
-            }
-
-            size += other.size;
-            other.clear();
-        }
-    }
-
-    // Clears the list by setting head and tail to null, thus every value that is
-    // connected by next or prev is no longer referenced and gets garbage collected
-    public void clear() {
-        size = 0;
-        head = null;
-        tail = null;
-    }
-
     // ======================== //
     // === HELPER FUNCTIONS === //
     // ========================= //
